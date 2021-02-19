@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Add Photo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <style>
+        .image-thumbail {height: 200px;object-fit: cover;}
+        .list-group-item a {text-decoration: none;color: black;}
+        .a1{text-decoration:none;color:#331a00;margin-left:600px;}
+        .a2{text-decoration:none;color:#331a00;}
+        </style>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+
+<body class="m-5" style="background-image:url(https://i.pinimg.com/originals/4c/32/b8/4c32b8c9d316da2348be65685f578264.jpg)">
+    <div>
+        <a href="" class="a1">Trang chủ &emsp;</a> <a href=""class="a2">Tin tức &emsp;</a> <a href=""class="a2">Khai báo tạm trú &emsp;</a>
+        <a href=""class="a2">Khai báo tạm vắng &emsp;</a> <a href="" class="a2">Đăng xuất</a>
+    </div>
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <a href="{% url 'gallery' %}" class="btn btn-dark my-3">Trở lại</a>
+                <div class="card">
+
+
+                    <form method='POST' action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="form-group m-3">
+                            <label>Mô tả</label>
+                            <input required name="description" type="text" placeholder="Nhập mô tả..."
+                                class="form-control">
+                        </div>
+
+                        <div class="form-group m-3">
+                            <label>Chọn 1 loại</label>
+                            <select name="category" class="form-control">
+                                <option value='none'>Chọn loại ảnh...</option>
+
+                                {% for category in categories %}
+                                <option value='{{category.id}}'>{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="form-group m-3">
+                            <label>Tạo loại ảnh mới</label>
+                            <input name="category_new" type="text" placeholder="Chọn ảnh mới..."
+                                class="form-control">
+                        </div>
+
+                        <div class="form-group m-3">
+                            <label>Tải ảnh lên</label>
+                            <input required name="images" type="file" multiple class="form-control-file">
+                        </div>
+
+                        <button type='submit' class="btn btn-primary m-3">Đồng ý</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <i style="font-size:12px; margin-left:500px">@copyright 2021 vntech</i>
+</body>
+
+</html>
